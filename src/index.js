@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Signin from './Signin';
 import Signup from './Signup';
 import App from './App';
 import { Provider } from 'redux-zero/react'
