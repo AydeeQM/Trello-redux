@@ -3,13 +3,14 @@ import { connect } from 'redux-zero/react';
 import './App.css';
 import Header from './Header'
 import Footer from './Footer'
+import { NavLink } from 'react-router-dom';
 import { addComment, handleLoginClick, handleLogoutClick} from './actions';
 
-const User = ({name}) => {
+const User = ({name, ide}) => {
 	return (
-    <div className="board">
+    <div id={ide} className="board">
 		<div className="inner">
-        <h4>{name}</h4>
+        <h4><NavLink to={"/details"}>{name}</NavLink></h4>
 		</div>
     </div>
 	);
@@ -26,7 +27,7 @@ const Usertwo = ({tboard}) => {
             {
                 tboard.map((list, index) => {
                     return (
-                        <div className='board'>
+                        <div key={index} className='board'>
                             <div className='inner'>
                                 <h4>{list.name}</h4>
                             </div>
@@ -86,9 +87,14 @@ const LoginButton = ({ showReply }) => {
 const Boards = ({ board, tboard, showReply }) => {
 
 const boardComponent =  board.map ( (item, index) => {
+    const count = (item.id).toString();
+    const tall = item.name;
+    const guion = "-";
+    const res = count.concat(guion,tall);
     return <User
         key = {index}
         name={item.name}
+        ide={res}
         index={index}
        />
   })

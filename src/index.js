@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Signup from './Signup';
 import Boards from './Boards';
+import DetaBoards from './Detailsboard';
 import App from './App';
 import { Provider } from 'redux-zero/react'
 import store from './store'
@@ -18,6 +19,7 @@ const Index = () => (
                 <Route path="/signin" component={App} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/boards" component={Boards} />
+                <Route path="/details" component={DetaBoards} />
             </Switch>
         </HashRouter>
     </Provider>

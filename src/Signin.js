@@ -17,7 +17,7 @@ const Init_page = () => {
                     <div className='field'>
                         <input type="password" id='user_password' placeholder="Password"  required />
                     </div>
-                    <button type='submit'>Sign in</button>
+                    <NavLink to={"/boards"}><button type='submit'>Sign in</button></NavLink>
                     <div className='second_view'>
                         <NavLink to={"/signup"}>Create new account</NavLink>
                     </div>
