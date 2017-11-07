@@ -4,7 +4,7 @@ import { board, tboard } from './Databoards'
 const initialState = {
     board: board,
     tboard: tboard,
-    selectedTodo: -1
+    showReply: false
 };
 
 const store = createStore(initialState);

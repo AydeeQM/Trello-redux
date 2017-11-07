@@ -3,7 +3,7 @@ import { connect } from 'redux-zero/react';
 import './App.css';
 import Header from './Header'
 import Footer from './Footer'
-import {addComment} from './actions';
+import { addComment, handleLoginClick, handleLogoutClick} from './actions';
 
 const User = ({name}) => {
 	return (
@@ -18,8 +18,8 @@ const User = ({name}) => {
 const Usertwo = ({tboard}) => {
     return (
     <section>
-        <header class="view-header">
-            <h3><i class="fa fa-users"></i><span> Other boards</span>
+        <header className="view-header">
+            <h3><i className="fa fa-users"></i><span> Other boards</span>
             </h3>
         </header>
         <div className='boards-wrapper'>
@@ -39,15 +39,52 @@ const Usertwo = ({tboard}) => {
     </section>)
 }
 
-const Boards= ({ board, tboard }) => {
-   const onSubmit = e => {
-     e.preventDefault();
-     if(this.refInput.value){
-      addComment(this.refInput.value);
-      this.refInput.value = '';
-    }
-     
-  };
+const LogoutButton = ({showReply}) => {
+    return(
+            !showReply && <div className="board add-new">
+                <div className="inner">
+                    <a id="add_new_board" onClick={() => handleLoginClick()}>Add new board...</a>
+                </div>
+            </div>
+    )
+}
+
+const LoginButton = ({ showReply }) => {
+    const onSubmit = e => {
+        e.preventDefault();
+        if (this.refInput.value) {
+            addComment(this.refInput.value);
+            this.refInput.value = '';
+        }
+
+    };
+    return(
+            showReply && <div className='board form'>
+                <div className='inner'>
+                    <h4>New board</h4>
+                    <form onSubmit={onSubmit} id='new_board_form'>
+                        <div className="inner-wrap">
+                            <input
+                                type="text"
+                                id="board_name"
+                                name="name"
+                                placeholder="User"
+                                ref={e => (this.refInput = e)}
+                            />
+                            <button type="submit" name="submit">Create board</button>
+                            <span> or </span>
+                            <a onClick={() => handleLogoutClick()}>Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    )
+        
+}
+
+
+const Boards = ({ board, tboard, showReply }) => {
+
 const boardComponent =  board.map ( (item, index) => {
     return <User
         key = {index}
@@ -64,35 +101,13 @@ const boardComponent =  board.map ( (item, index) => {
                 <div className='main-container'>
                         <div className="view-container boards index">
                             <section>
-                            <header class="view-header" >
-                                <h3><i class="fa fa-user"></i><span> My boards</span></h3>
+                            <header className="view-header" >
+                                <h3><i className="fa fa-user"></i><span> My boards</span></h3>
                                 </header>
                                 <div className="boards-wrapper">
                                     {boardComponent}
-                                    <div className="board add-new">
-                                        <div class="inner">
-                                            <a id="add_new_board">Add new board...</a>
-                                        </div>
-                                    </div>
-                                    <div className='board form'>
-                                        <div className='inner'>
-                                            <h4>New board</h4>
-                                            <form onSubmit={onSubmit} id='new_board_form'>
-                                                <div className="inner-wrap">
-                                                    <input
-                                                        type="text"
-                                                        id="board_name"
-                                                        name="name"
-                                                        placeholder="User"
-                                                        ref={e => (this.refInput = e)}
-                                                    />
-                                                    <button type="submit" name="submit">Create board</button>
-                                                    <span> or </span>
-                                                    <a href="#">cancel</a>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                                    <LogoutButton showReply={showReply} />
+                                    <LoginButton showReply={showReply} /> 
                                 </div>
                             </section>
                             <Usertwo tboard={tboard} />
@@ -105,5 +120,5 @@ const boardComponent =  board.map ( (item, index) => {
    );
 };
 
-const mapToProps = ({ board, tboard }) => ({ board, tboard});
+const mapToProps = ({ board, tboard, showReply }) => ({ board, tboard, showReply});
 export default connect(mapToProps)(Boards);

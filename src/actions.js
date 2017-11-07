@@ -19,3 +19,17 @@ export const removeComment = (index) => {
         board: newforoList
     })
 }
+
+export const handleLoginClick = () => {
+    const change = store.getState().showReply;
+    const newState = !change;
+    console.log('Entre login!!!', newState);
+    store.setState({ showReply: newState});
+}
+
+export const handleLogoutClick = () =>  {
+    const change = store.getState().showReply;
+    const newState = change;
+    console.log('Ente logout!!!', newState);
+    store.setState({ showReply: newState });
+}
