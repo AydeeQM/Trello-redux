@@ -4,13 +4,13 @@ import './App.css';
 import Header from './Header'
 import Footer from './Footer'
 import { NavLink } from 'react-router-dom';
-import { addComment, handleLoginClick, handleLogoutClick} from './actions';
+import { addComment, setView, handleLoginClick, handleLogoutClick} from './actions';
 
-const User = ({name, ide}) => {
+const User = ({name, ide, index}) => {
 	return (
     <div id={ide} className="board">
 		<div className="inner">
-        <h4><NavLink to={"/details"}>{name}</NavLink></h4>
+        <h4><NavLink onClick={()=>{setView(index)}} to={"/details"}>{name}</NavLink></h4>
 		</div>
     </div>
 	);

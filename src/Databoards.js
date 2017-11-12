@@ -1,27 +1,87 @@
 export const board = [
     {
         id: 0,
-        name: 'Tes Board'
+        name: 'Tes Board',
+        lists: [
+            {
+                name: "Testeo",
+                commit: ["Prototipo", "Estilos"],
+            },
+            {
+                name: "Mocha",
+                commit: ["Prototipo","Funcionalidad", "etc"],
+            }
+        ]
     },
     {
         id: 1,
-        name: 'Melania'
+        name: 'Programacion',
+        lists: [
+            {
+                name: "Lenguajes",
+                commit: ["Java", "View js", "Javascript", "etc"],
+            },
+            {
+                name: "Librerias",
+                commit: ["JQuery", "Ract"],
+            }
+        ]
     },
     {
         id: 2,
         name: 'Arich-jos',
+        lists: [
+            {
+                name: "Agregar inputs",
+                commit: ["Prototipo", "Estilos", "Funcionalidad", "etc"],
+            },
+            {
+                name: "Agregar botones",
+                commit: ["Prototipo", "Estilos", "on clicks", "Funcionalidad", "etc"],
+            }
+        ]
     },
     {
         id: 3,
-        name: 'Rita'
+        name: 'Estilos',
+        lists: [
+            {
+                name: "CSS",
+                commit: ["Estructura", "colores"],
+            },
+            {
+                name: "Less",
+                commit: ["Funcionalidad"],
+            },
+            {
+                name: "SASS",
+                commit: ["Estructura", "Funciones", "Consola"],
+            }
+        ]
     },
     {
         id: 4,
-        name: 'Melania'
+        name: 'Redux',
+        lists: [
+            {
+                name: "Inicio",
+                commit: ["npm install", "Connect", "React Router"],
+            },
+        ]
     },
     {
         id: 5,
-        name: 'Arich-jos',
+        name: 'Portafolio',
+        lists: [
+            {
+                name: "Primera parte",
+                commit: ["Rutas", "Componentes", "Data", "Imagen"],
+            },
+            {
+                name: "Segunda parte",
+                commit: ["GHpages", "Estilos","Funcionalidad", "Mockat"],
+            }
+        ]
     }
 ];
 
@@ -51,33 +111,3 @@ export const tboard = [
         name: 'Arich-jos',
     }
 ];
-
-export const listdetails = [
-    {
-        id: 0,
-        title: 'Tarea 1'
-        
-    },
-    {
-        id: 1,
-        title: 'Tarea 2'
-    },
-    {
-        id: 2,
-        title: 'Tarea 3',
-    }
-];
-
-
-export const todos =[
-    {
-        todocoment: 'djksg',
-    },
-    {
-        todocoment: 'eytydrwet',
-    }, 
-    {
-        todocoment: 'bvxchgscfdjgfiyuerf',
-    }
-
-]

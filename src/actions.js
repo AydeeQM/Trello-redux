@@ -7,6 +7,7 @@ export const addComment = (name) => {
     const newList = oldList.concat({
         id: oldList.length,
         name: name,
+        lists:[],
     });
     store.setState({
         board: newList,
@@ -16,10 +17,9 @@ export const addComment = (name) => {
     console.log(newList);
 };
 
-export const removeComment = (index) => {
-    const newforoList = store.getState().board.filter((item, idx) => idx !== index);
+export const setView = (index) => {
     store.setState({
-        board: newforoList
+        selectedBoard: index
     })
 }
 
@@ -35,25 +35,24 @@ export const handleLogoutClick = () =>  {
     console.log(store.getState().showReply)
     let bolean = store.getState().showReply ? false : true;
     const newState = change;
-    console.log('Ente logout!!!', bolean);
     store.setState({ showReply: bolean });
 }
 
 /* Lista de board */
-export const addList = (title) => {
-    let oldList = store.getState().details;
+export const addList = (selected, name) => {
+    let oldList = [...store.getState().board];
     const change = store.getState().toggle;
     const newState = !change;
-    const newList = oldList.concat({
-        id: oldList.length,
-        title: title,
+    oldList[selected].lists.push({
+        name: name,
+        commit: [],
     });
+    console.log('entres nueva lista');
     store.setState({
-        details: newList,
-        toggle: newList,
+        board: oldList,
+        toggle: newState,
     });
 
-    console.log(newList);
 };
 
 export const handleHideClick = () => {
@@ -71,30 +70,27 @@ export const handleShowClick = () => {
     store.setState({ toggle: bolean});
 }
 
-/* add works  */
-export const addTodo = (todocoment) => {
-    let oldList = store.getState().todo;
+/* add works Comments */
+export const addTodo = (selected, index, todocoment) => {
+    let oldList = [...store.getState().board];
     const change = store.getState().todostado;
     const newState = !change;
-    const newList = oldList.concat({
-        todocoment: todocoment,
-    });
+    oldList[selected].lists[index].commit.push(todocoment);
+    console.log('nuevo comentario...')
     store.setState({
-        todo: newList,
+        board: oldList,
         todostado: newState
     });
-
-    console.log(newList);
 };
 
-export const TodoHideClick = () => {
+export const TodoHideClick = (index) => {
     const change = store.getState().todostado;
     const newState = !change;
     console.log('Entre login!!!', newState);
     store.setState({ todostado: newState });
 }
 
-export const TodoShowClick = () => {
+export const TodoShowClick = (index) => {
     const change = store.getState().todostado;
     let bolean = store.getState().todostado ? false : true;
     const newState = change;

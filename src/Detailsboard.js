@@ -5,17 +5,19 @@ import Header from './Header'
 import Footer from './Footer'
 import { addList, handleShowClick, handleHideClick, addTodo, TodoHideClick, TodoShowClick } from './actions';
 
-const TodoHide = ({todostado }) => {
+/* -----------------Agregar Comentarios--------------------------- */
+
+const TodoHide = ({todostado, index }) => {
     return (
-        !todostado && <a class="add-new" onClick={() => TodoHideClick()} > Add a new card...</a>
+        !todostado && <a className="add-new" onClick={() => TodoHideClick(index)} > Add a new card...</a>
     )
 }
 
-const TodoShow= ({todostado}) => {
+const TodoShow= ({selected, index, todostado}) => {
     const onSubmit = e => {
         e.preventDefault();
         if (this.refInput.value) {
-            addTodo(this.refInput.value);
+            addTodo(selected, index, this.refInput.value);
             this.refInput.value = '';
         }
 
@@ -24,10 +26,10 @@ const TodoShow= ({todostado}) => {
         todostado && <div className="list form">
             <div className='inner'>
                 <h4>New board</h4>
-                <div class="card form">
+                <div className="card form">
                     <form onSubmit={onSubmit} id="new_card_form">
-                        <textarea id="card_name" type="text" required="" rows="5" ref={e => (this.refInput = e)}></textarea>
-                        <button type="submit">Add</button><span> or </span><a onClick={() => TodoShowClick()}>cancel</a>
+                        <textarea type="text" required="" ref={e => (this.refInput = e)}></textarea>
+                        <button type="submit">Add</button><span> or </span><a onClick={() => TodoShowClick(index)}>cancel</a>
                     </form>
                 </div>
             </div>
@@ -36,56 +38,54 @@ const TodoShow= ({todostado}) => {
 
 }
 
-const User = ({ title, todo, todostado }) => {
+/* --------------------------------------------**---------------------------------------------------------------- */
+
+const User = ({ title, board, index, selected, selectedBoard, todostado }) => {
     return (
-        <div className="list">
+        <div key={index} className="list">
             <div className="inner">
                 <header><h4>{title}</h4></header>
-                <div class="cards-wrapper">
-                    <div id="card_348" class="card"  draggable="true">
-                        <div class="card-content">
-                            <div class="tags-wrapper" ></div>
-                            {
-                                todo.map((list, index) => {
-                                    return (
-                                        <span key={index}>{list.todocoment}</span>
-                                    );
-                                })
-                            }
-                            <footer>
-                                <small>
-                                    <i class="fa fa-comment-o"></i><span></span><span>1</span>
-                                </small>
-                                <img alt="Gravatar for john@phoenix-trello.com" src="//www.gravatar.com/avatar/6a88cfcf7b76267b129b8dc477c4105e?d=retro&amp;r=g&amp;s=50" srcset="//www.gravatar.com/avatar/6a88cfcf7b76267b129b8dc477c4105e?d=retro&amp;r=g&amp;s=100 2x" height="50" width="50" class="react-gravatar react-gravatar"/>
-                            </footer>
+                <div className="cards-wrapper">
+                    {board.commit.map((comment, i) => {
+                        return <div key={i}  className="card">
+                            <div className="card-content">
+                                <div className="tags-wrapper" >
+                                    <span>{comment}</span>
+                                </div>
+                                <footer>
+                                    <small>
+                                        <i className="fa fa-comment-o"></i><span></span><span>1</span>
+                                    </small>
+                                    <img alt="Gravatar for john@phoenix-trello.com" src="//www.gravatar.com/avatar/6a88cfcf7b76267b129b8dc477c4105e?d=retro&amp;r=g&amp;s=50" srcset="//www.gravatar.com/avatar/6a88cfcf7b76267b129b8dc477c4105e?d=retro&amp;r=g&amp;s=100 2x" height="50" width="50" className="react-gravatar react-gravatar" />
+                                </footer>
+                            </div>
                         </div>
-                    </div>
-                    <div id="card_349" class="card" draggable="true">
-                        <div class="card-content"><div class="tags-wrapper"></div><span>jkb,mnnbm,</span>
-                    <footer></footer>
-                    </div>
+                    })}
+                    <div id="card_349" className="card" draggable="true">
+                    <div className="card-content"><div className="tags-wrapper"></div><span>my commit</span></div>
                     </div>
                 </div>
                 <footer>
                     <TodoHide todostado={todostado} />
-                    <TodoShow todostado={todostado} /> 
+                    <TodoShow selected={selectedBoard} index={index} todostado={todostado} /> 
                 </footer>
             </div>
         </div>
     );
 }
 
+/* ***************************Agregar lista de tareas****************************** */
 const LogoutButton = ({ toggle }) => {
     return (
-        !toggle && <div class="list add-new"><div class="inner" onClick={() => handleHideClick()}>Add new list...</div></div>
+        !toggle && <div className="list add-new"><div className="inner" onClick={() => handleHideClick()}>Add new list...</div></div>
     )
 }
 
-const LoginButton = ({ toggle }) => {
+const LoginButton = ({ selected, toggle }) => {
     const onSubmit = e => {
         e.preventDefault();
         if (this.refInput.value) {
-            addList(this.refInput.value);
+            addList(selected, this.refInput.value);
             this.refInput.value = '';
         }
 
@@ -115,14 +115,17 @@ const LoginButton = ({ toggle }) => {
 
 }
 
-const DetaBoards = ({details, toggle, todo, todostado}) => {
+/* ********************************************************************************** */
 
-    const boardComponent = details.map((item, index) => {
+const DetaBoards = ({ board, selected, selectedBoard, index, toggle, todostado}) => {
+
+    const boardComponent = board[selectedBoard].lists.map((item, index) => {
         return <User
             key={index}
-            title={item.title}
+            title={item.name}
             index={index}
-            todo={todo}
+            board={item}
+            selected={selectedBoard}
             todostado={todostado}
             
         />
@@ -136,14 +139,14 @@ const DetaBoards = ({details, toggle, todo, todostado}) => {
                     <div className='main-container'>
                         <div className="view-container boards show">
                                 <header className="view-header" >
-                                    <h3>Tes Board</h3>
+                                <h3>{board[selectedBoard].name}</h3>
                                 </header>
                                 <div className="canvas-wrapper">
                                     <div className="canvas">
                                         <div className="lists-wrapper">
                                             {boardComponent}
                                             <LogoutButton toggle={toggle} />
-                                            <LoginButton toggle={toggle} /> 
+                                            <LoginButton selected={selectedBoard} toggle={toggle} /> 
                                         </div>
                                     </div>
                                 </div>
@@ -156,5 +159,5 @@ const DetaBoards = ({details, toggle, todo, todostado}) => {
     );
 };
 
-const mapToProps = ({details, toggle, todo, todostado}) => ({details, todo, toggle, todostado});
+const mapToProps = ({ board, selected, selectedBoard, index, toggle, todostado }) => ({ board, selected, selectedBoard, index, toggle, todostado});
 export default connect(mapToProps)(DetaBoards);
