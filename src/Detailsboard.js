@@ -7,13 +7,13 @@ import { addList, handleShowClick, handleHideClick, addTodo, TodoHideClick, Todo
 
 /* -----------------Agregar Comentarios--------------------------- */
 
-const TodoHide = ({todostado, index }) => {
+const TodoHide = ({selected, index }) => {
     return (
-        !todostado && <a className="add-new" onClick={() => TodoHideClick(index)} > Add a new card...</a>
+        <a className="add-new" onClick={() => TodoHideClick(selected, index)} > Add a new card...</a>
     )
 }
 
-const TodoShow= ({selected, index, todostado}) => {
+const TodoShow= ({selected, index}) => {
     const onSubmit = e => {
         e.preventDefault();
         if (this.refInput.value) {
@@ -23,13 +23,13 @@ const TodoShow= ({selected, index, todostado}) => {
 
     };
     return (
-        todostado && <div className="list form">
+        <div className="list form">
             <div className='inner'>
                 <h4>New board</h4>
                 <div className="card form">
                     <form onSubmit={onSubmit} id="new_card_form">
                         <textarea type="text" required="" ref={e => (this.refInput = e)}></textarea>
-                        <button type="submit">Add</button><span> or </span><a onClick={() => TodoShowClick(index)}>cancel</a>
+                        <button type="submit">Add</button><span> or </span><a onClick={() => TodoShowClick(selected, index)}>cancel</a>
                     </form>
                 </div>
             </div>
@@ -40,7 +40,7 @@ const TodoShow= ({selected, index, todostado}) => {
 
 /* --------------------------------------------**---------------------------------------------------------------- */
 
-const User = ({ title, board, index, selected, selectedBoard, todostado }) => {
+const User = ({ title, evalue, board, index, selected}) => {
     return (
         <div key={index} className="list">
             <div className="inner">
@@ -61,13 +61,10 @@ const User = ({ title, board, index, selected, selectedBoard, todostado }) => {
                             </div>
                         </div>
                     })}
-                    <div id="card_349" className="card" draggable="true">
-                    <div className="card-content"><div className="tags-wrapper"></div><span>my commit</span></div>
-                    </div>
                 </div>
                 <footer>
-                    <TodoHide todostado={todostado} />
-                    <TodoShow selected={selectedBoard} index={index} todostado={todostado} /> 
+                    {evalue === false && <TodoHide selected={selected} index={index} />}
+                    {evalue === true && <TodoShow selected={selected} index={index} /> }
                 </footer>
             </div>
         </div>
@@ -75,13 +72,13 @@ const User = ({ title, board, index, selected, selectedBoard, todostado }) => {
 }
 
 /* ***************************Agregar lista de tareas****************************** */
-const LogoutButton = ({ toggle }) => {
+const LogoutButton = ({selected}) => {
     return (
-        !toggle && <div className="list add-new"><div className="inner" onClick={() => handleHideClick()}>Add new list...</div></div>
+        <div className="list add-new"><div className="inner" onClick={() => handleHideClick(selected)}>Add new list...</div></div>
     )
 }
 
-const LoginButton = ({ selected, toggle }) => {
+const LoginButton = ({selected}) => {
     const onSubmit = e => {
         e.preventDefault();
         if (this.refInput.value) {
@@ -91,7 +88,7 @@ const LoginButton = ({ selected, toggle }) => {
 
     };
     return (
-        toggle && <div className="list form">
+        <div className="list form">
             <div className='inner'>
                 <h4>New board</h4>
                 <form onSubmit={onSubmit} id='new_list_form'>
@@ -106,7 +103,7 @@ const LoginButton = ({ selected, toggle }) => {
                         />
                         <button type="submit">Save list</button>
                         <span> or </span>
-                        <a onClick={() => handleShowClick()}>Cancel</a>
+                        <a onClick={() => handleShowClick(selected)}>Cancel</a>
                     </div>
                 </form>
             </div>
@@ -117,16 +114,16 @@ const LoginButton = ({ selected, toggle }) => {
 
 /* ********************************************************************************** */
 
-const DetaBoards = ({ board, selected, selectedBoard, index, toggle, todostado}) => {
+const DetaBoards = ({ board, idBoard, index}) => {
 
-    const boardComponent = board[selectedBoard].lists.map((item, index) => {
+    const boardComponent = board[idBoard].cards.map((item, index) => {
         return <User
             key={index}
             title={item.name}
+            evalue={item.todostado}
             index={index}
             board={item}
-            selected={selectedBoard}
-            todostado={todostado}
+            selected={idBoard}
             
         />
     })
@@ -139,14 +136,19 @@ const DetaBoards = ({ board, selected, selectedBoard, index, toggle, todostado})
                     <div className='main-container'>
                         <div className="view-container boards show">
                                 <header className="view-header" >
-                                <h3>{board[selectedBoard].name}</h3>
+                                <h3>{board[idBoard].name}</h3>
                                 </header>
                                 <div className="canvas-wrapper">
                                     <div className="canvas">
                                         <div className="lists-wrapper">
                                             {boardComponent}
-                                            <LogoutButton toggle={toggle} />
-                                            <LoginButton selected={selectedBoard} toggle={toggle} /> 
+                                            {
+                                            board[idBoard].toggle === false && <LogoutButton selected={idBoard} />
+                                            }
+                                            {
+                                            board[idBoard].toggle === true && <LoginButton selected={idBoard} /> 
+                                            }
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -159,5 +161,5 @@ const DetaBoards = ({ board, selected, selectedBoard, index, toggle, todostado})
     );
 };
 
-const mapToProps = ({ board, selected, selectedBoard, index, toggle, todostado }) => ({ board, selected, selectedBoard, index, toggle, todostado});
+const mapToProps = ({ board, idBoard, index}) => ({ board, idBoard, index});
 export default connect(mapToProps)(DetaBoards);

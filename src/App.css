@@ -1,62 +1,35 @@
-/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
-/**
- * 1. Set default font family to sans-serif.
- * 2. Prevent iOS text size adjust after orientation change, without disabling
- *    user zoom. */
 html {
   font-family: sans-serif;
-  /* 1 */
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
 }
-/**
- * Remove default margin. */
+
 body {
   margin: 0;
 }
-/* HTML5 display definitions
- * ========================================================================== */
-/**
- * Correct `block` display not defined for any HTML5 element in IE 8/9.
- * Correct `block` display not defined for `details` or `summary` in IE 10/11
- * and Firefox.
- * Correct `block` display not defined for `main` in IE 11. */
+
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
-/**
- * 1. Correct `inline-block` display not defined in IE 8/9.
- * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera. */
+
 audio, canvas, progress, video {
   display: inline-block;
   /* 1 */
   vertical-align: baseline;
   /* 2 */
 }
-/**
- * Prevent modern browsers from displaying `audio` without controls.
- * Remove excess height in iOS 5 devices. */
+
 audio:not([controls]) {
   display: none;
   height: 0;
 }
-/**
- * Address `[hidden]` styling not present in IE 8/9/10.
- * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22. */
+
 [hidden], template {
   display: none;
 }
-/* Links
- * ========================================================================== */
-/**
- * Remove the gray background color from active links in IE 10. */
+/* Links */
 a {
   background-color: transparent;
 }
-/**
- * Improve readability when focused and also mouse hovered in all browsers. */
+
 a:active, a:hover {
   outline: 0;
 }
@@ -148,14 +121,6 @@ code, kbd, pre, samp {
 }
 /* Forms
  * ========================================================================== */
-/**
- * Known limitation: by default, Chrome and Safari on OS X allow very limited
- * styling of `select`, unless a `border` property is set. */
-/**
- * 1. Correct color not being inherited.
- *    Known issue: affects color of disabled elements.
- * 2. Correct font properties not being inherited.
- * 3. Address margins set differently in Firefox 4+, Safari, and Chrome. */
 button, input, optgroup, select, textarea {
   color: inherit;
   /* 1 */
@@ -169,20 +134,11 @@ button, input, optgroup, select, textarea {
 button {
   overflow: visible;
 }
-/**
- * Address inconsistent `text-transform` inheritance for `button` and `select`.
- * All other form control elements do not inherit `text-transform` values.
- * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
- * Correct `select` style inheritance in Firefox. */
+
 button, select {
   text-transform: none;
 }
-/**
- * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
- *    and `video` controls.
- * 2. Correct inability to style clickable `input` types in iOS.
- * 3. Improve usability and consistency of cursor style between image-type
- *    `input` and others. */
+
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -382,48 +338,7 @@ html body .main-container .view-container .view-header h3 {
 body {
   background: #89609e;
 }
-.tag.green {
-  background: #61bd4f;
-}
-.tag.green:hover, .tag.green.selected {
-  box-shadow: -8px 0 #4e973f;
-}
-.tag.yellow {
-  background: #f2d600;
-}
-.tag.yellow:hover, .tag.yellow.selected {
-  box-shadow: -8px 0 #c2ab00;
-}
-.tag.orange {
-  background: #ffab4a;
-}
-.tag.orange:hover, .tag.orange.selected {
-  box-shadow: -8px 0 #cc893b;
-}
-.tag.red {
-  background: #eb5a46;
-}
-.tag.red:hover, .tag.red.selected {
-  box-shadow: -8px 0 #bc4838;
-}
-.tag.purple {
-  background: #c377e0;
-}
-.tag.purple:hover, .tag.purple.selected {
-  box-shadow: -8px 0 #9c5fb3;
-}
-.tag.blue {
-  background: #0079bf;
-}
-.tag.blue:hover, .tag.blue.selected {
-  box-shadow: -8px 0 #006199;
-}
-body {
-  color: #4c4e50;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 1em;
-  line-height: 1.5;
-}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Open Sans", sans-serif;
   line-height: 1.2em;
@@ -468,237 +383,7 @@ form .error, .form .error {
   animation: fadeIn 0.3s;
   color: #e74c3c;
 }
-.md-overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  background: rgba(51, 51, 51, 0.7);
-  overflow-y: scroll;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
-.md-overlay .md-modal {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  position: fixed;
-  pointer-events: none;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: scroll;
-}
-.md-overlay .md-modal .md-content {
-  padding: 1.5em;
-  border-radius: 3px;
-  background: #dee1e3;
-  position: absolute;
-  pointer-events: all;
-  width: 700px;
-  top: 3em;
-  left: 50%;
-  margin-left: -350px;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
-.md-overlay .md-modal .md-content > header {
-  margin-bottom: 1em;
-}
-.md-overlay .card-modal {
-  position: relative;
-}
-.md-overlay .card-modal::after {
-  clear: both;
-  content: "";
-  display: block;
-}
-.md-overlay .card-modal .react-gravatar {
-  border-radius: 3px;
-  width: 30px;
-  height: 30px;
-}
-.md-overlay .card-modal > .close {
-  position: absolute;
-  right: 0.75em;
-  top: 0.75em;
-  line-height: 1em;
-  color: #828385;
-}
-.md-overlay .card-modal > .close:hover {
-  color: #4c4e50;
-}
-.md-overlay .card-modal .info {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 74.41059%;
-}
-.md-overlay .card-modal .info:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .options {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 23.23176%;
-  position: relative;
-  overflow: visible;
-}
-.md-overlay .card-modal .options:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .options .button {
-  width: 100%;
-  -webkit-transition: all 0.15s ease-out 0s;
-  -moz-transition: all 0.15s ease-out 0s;
-  transition: all 0.15s ease-out 0s;
-  background: #fff;
-  padding: 0.3em 0.5em;
-  border-radius: 3px;
-  border-bottom: 1px solid #bdc3c7;
-  display: block;
-  color: #4c4e50;
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
-.md-overlay .card-modal .options .button .fa {
-  color: #bdc3c7;
-  margin-right: 0.5em;
-}
-.md-overlay .card-modal .options .button:hover {
-  background: #3498db;
-  color: #fff;
-}
-.md-overlay .card-modal .options .button:hover .fa {
-  color: #fff;
-}
-.md-overlay .card-modal header h3 {
-  color: #4c4e50;
-}
-.md-overlay .card-modal input, .md-overlay .card-modal textarea {
-  width: 100%;
-  display: block;
-  margin-bottom: 0.5em;
-  border: 0px none;
-  border-bottom: 1px solid #bdc3c7;
-}
-.md-overlay .card-modal .form-wrapper {
-  margin: 1.5em 0;
-}
-.md-overlay .card-modal .form-wrapper::after {
-  clear: both;
-  content: "";
-  display: block;
-}
-.md-overlay .card-modal .form-wrapper .gravatar-wrapper {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 6.17215%;
-}
-.md-overlay .card-modal .form-wrapper .gravatar-wrapper:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .form-wrapper .gravatar-wrapper .react-gravatar {
-  border-radius: 3px;
-  width: 30px;
-  height: 30px;
-}
-.md-overlay .card-modal .form-wrapper .form-controls {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 91.4702%;
-}
-.md-overlay .card-modal .form-wrapper .form-controls:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .comment {
-  margin-bottom: 0.75em;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
-.md-overlay .card-modal .comment::after {
-  clear: both;
-  content: "";
-  display: block;
-}
-.md-overlay .card-modal .comment .gravatar-wrapper {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 6.17215%;
-}
-.md-overlay .card-modal .comment .gravatar-wrapper:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .comment .info-wrapper {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 91.4702%;
-}
-.md-overlay .card-modal .comment .info-wrapper:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .comment .info-wrapper h5 {
-  margin-bottom: 0.5em;
-}
-.md-overlay .card-modal .comment .info-wrapper .text {
-  background: #fff;
-  border-radius: 3px;
-  padding: 0.5em;
-  border: 0px none;
-  border-bottom: 1px solid #bdc3c7;
-}
-.md-overlay .card-modal .items-wrapper::after {
-  clear: both;
-  content: "";
-  display: block;
-}
-.md-overlay .card-modal .card-members {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 48.82117%;
-  margin-bottom: 1.5em;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
-.md-overlay .card-modal .card-members:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .card-members .react-gravatar {
-  margin-right: 5px;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
-.md-overlay .card-modal .card-tags {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 48.82117%;
-  margin-bottom: 1.5em;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
-.md-overlay .card-modal .card-tags:last-child {
-  margin-right: 0;
-}
-.md-overlay .card-modal .card-tags .tag {
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-  box-shadow: 0 0 0;
-  display: inline-block;
-  border-radius: 3px;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
+
 .main-header {
   background: #745286;
   line-height: 2.7em;
@@ -712,10 +397,6 @@ form .error, .form .error {
   display: block;
 }
 .main-header .logo {
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   display: inline-block;
   background: url('./images/logo.png') 0 0 no-repeat;
@@ -745,8 +426,6 @@ form .error, .form .error {
   display: inline-block;
 }
 .main-header nav ul li a {
-  -webkit-transition: all 0.15s ease-out 0s;
-  -moz-transition: all 0.15s ease-out 0s;
   transition: all 0.15s ease-out 0s;
   color: rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.15);
@@ -843,10 +522,6 @@ form .error, .form .error {
   height: 100%;
 }
 .sessions.new main, .registrations.new main {
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   position: absolute;
   width: 450px;
@@ -903,31 +578,15 @@ form .error, .form .error {
   overflow-y: scroll;
 }
 .boards.index .boards-wrapper {
-  display: -webkit-box;
-  display: -moz-box;
   display: box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-lines: multiple;
-  -moz-box-lines: multiple;
   box-lines: multiple;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap;
   flex-flow: row wrap;
   margin: 0 -0.5em 1em -0.5em;
 }
 .boards.index .boards-wrapper .board {
-  -webkit-transition: all 0.15s ease-out 0s;
-  -moz-transition: all 0.15s ease-out 0s;
   transition: all 0.15s ease-out 0s;
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
   box-flex: 0;
   -webkit-flex: 0 0 25%;
   -moz-flex: 0 0 25%;
@@ -990,10 +649,6 @@ form .error, .form .error {
   color: #fff;
 }
 .boards.show .view-header .board-users {
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
   transform: translateY(-50%);
   list-style: none;
   margin: 0;
@@ -1148,12 +803,7 @@ form .error, .form .error {
   cursor: grab;
 }
 .boards.show .lists-wrapper .list > .inner .list.form {
-  -webkit-box-flex: none;
-  -moz-box-flex: none;
   box-flex: none;
-  -webkit-flex: none;
-  -moz-flex: none;
-  -ms-flex: none;
   flex: none;
   width: 100%;
   display: block;
@@ -1181,8 +831,6 @@ form .error, .form .error {
   background: transparent;
 }
 .boards.show .lists-wrapper .list.add-new .inner {
-  -webkit-transition: all 0.15s ease-out 0s;
-  -moz-transition: all 0.15s ease-out 0s;
   transition: all 0.15s ease-out 0s;
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
@@ -1288,94 +936,6 @@ form .error, .form .error {
   border: 0px none;
   border-bottom: 1px solid #bdc3c7;
 }
-.members-selector, .tags-selector {
-  background: #fff;
-  border: 1px solid #bdc3c7;
-  border-radius: 3px;
-  position: absolute;
-  padding: 0.75em;
-  width: 18em;
-  animation-duration: 0.3s;
-  animation-name: fadeIn;
-}
-.members-selector header, .tags-selector header {
-  border-bottom: 1px solid #dee1e3;
-  margin-bottom: 0.75em;
-  text-align: center;
-  position: relative;
-  padding-bottom: 0.5em;
-}
-.members-selector header > .close, .tags-selector header > .close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  line-height: 1em;
-  color: #828385;
-}
-.members-selector ul, .tags-selector ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.members-selector ul li, .tags-selector ul li {
-  margin-bottom: 3px;
-}
-.members-selector ul li a, .tags-selector ul li a {
-  -webkit-transition: all 0.15s ease-out 0s;
-  -moz-transition: all 0.15s ease-out 0s;
-  transition: all 0.15s ease-out 0s;
-  border-radius: 3px;
-  padding: 3px;
-  display: block;
-  position: relative;
-  color: #4c4e50;
-}
-.members-selector ul li a.tag, .tags-selector ul li a.tag {
-  height: 2em;
-}
-.members-selector ul li a.tag .fa, .tags-selector ul li a.tag .fa {
-  color: #fff;
-}
-.members-selector ul li a.tag.green:hover, .members-selector ul li a.tag.green.selected, .tags-selector ul li a.tag.green:hover, .tags-selector ul li a.tag.green.selected {
-  box-shadow: -8px 0 #4e973f;
-}
-.members-selector ul li a.tag.yellow:hover, .members-selector ul li a.tag.yellow.selected, .tags-selector ul li a.tag.yellow:hover, .tags-selector ul li a.tag.yellow.selected {
-  box-shadow: -8px 0 #c2ab00;
-}
-.members-selector ul li a.tag.orange:hover, .members-selector ul li a.tag.orange.selected, .tags-selector ul li a.tag.orange:hover, .tags-selector ul li a.tag.orange.selected {
-  box-shadow: -8px 0 #cc893b;
-}
-.members-selector ul li a.tag.red:hover, .members-selector ul li a.tag.red.selected, .tags-selector ul li a.tag.red:hover, .tags-selector ul li a.tag.red.selected {
-  box-shadow: -8px 0 #bc4838;
-}
-.members-selector ul li a.tag.purple:hover, .members-selector ul li a.tag.purple.selected, .tags-selector ul li a.tag.purple:hover, .tags-selector ul li a.tag.purple.selected {
-  box-shadow: -8px 0 #9c5fb3;
-}
-.members-selector ul li a.tag.blue:hover, .members-selector ul li a.tag.blue.selected, .tags-selector ul li a.tag.blue:hover, .tags-selector ul li a.tag.blue.selected {
-  box-shadow: -8px 0 #006199;
-}
-.members-selector ul li a .fa, .tags-selector ul li a .fa {
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  position: absolute;
-  right: 0.5em;
-  top: 50%;
-}
-.members-selector ul li a:not(.tag):hover, .tags-selector ul li a:not(.tag):hover {
-  background: #3498db;
-  color: #fff;
-}
-.members-selector ul .react-gravatar, .tags-selector ul .react-gravatar {
-  border-radius: 3px;
-  width: 30px;
-  height: 30px;
-  vertical-align: middle;
-  margin-right: 0.5em;
-}
- 
 /* CSS Complemento */
 
 .second_view{
